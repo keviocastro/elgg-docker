@@ -7,6 +7,7 @@ MYSQL_PORT="$MYSQL_PORT"
 MYSQL_USER="$MYSQL_USER"
 MYSQL_PASS="$MYSQL_PASS"
 ELGG_DB_HOST="$ELGG_DB_HOST"
+ELGG_DATA_ROOT="$ELGG_DATA_ROOT"
 
 #wait for mysql
 i=0
@@ -27,4 +28,9 @@ if [ ! -d "${ELGG_PATH}elgg-config/" ]; then
 	mkdir "${ELGG_PATH}elgg-config/"
 	chown -R www-data:www-data "${ELGG_PATH}elgg-config/"
 fi
+
+mkdir $ELGG_DATA_ROOT
+chown -R www-data:www-data $ELGG_DATA_ROOT
+chmod 770 -R $ELGG_DATA_ROOT
+
 php	/elgg-docker/elgg-install.php
